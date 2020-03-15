@@ -52,9 +52,11 @@ get "/ski_areas/:id/reviews/create" do
     @ski_area = ski_areas_table.where(id: params["id"]).to_a[0]
     reviews_table.insert(ski_area_id: params["id"],
                        user_id: session["user_id"],
-                       going: params["going"],
-                       comments: params["comments"])
-    view "create_rsvp"
+                       quality_rating: params["quality"],
+                       variety_rating: params["variety"],
+                       comments: params["comments"],
+                       date: params["date"])
+    view "create_review"
 end
 
 get "/users/new" do

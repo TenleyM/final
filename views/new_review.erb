@@ -1,9 +1,9 @@
-<h1>Leave review for food options at <%= @ski_area[:ski_area_name] %></h1>
+<h1>Leave a review for food options at <%= @ski_area[:ski_area_name] %></h1>
 
 <form action="/ski_areas/<%= @ski_area[:id] %>/reviews/create">
   <div class="form-group">
     <label for="exampleFormControlSelect1">Quality Rating (how good was the food you ate?)</label>
-    <select class="form-control" id="exampleFormControlSelect1">
+    <select class="form-control" name="quality">
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -18,7 +18,7 @@
   </div>
     <div class="form-group">
     <label for="exampleFormControlSelect1">Variety Rating (was there a variety of options at the resort?)</label>
-    <select class="form-control" id="exampleFormControlSelect1">
+    <select class="form-control" name="variety">
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -34,6 +34,10 @@
   <div class="form-group">
     <label>Comments (comment on quality, variety, or other things of note)</label>
     <textarea class="form-control" rows="3" name="comments"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput">When were you there?</label>
+    <input type="text" class="form-control" name="date" placeholder="MM/DD/YY">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
