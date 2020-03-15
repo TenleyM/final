@@ -25,7 +25,7 @@ end
 get "/" do
     puts ski_areas_table.all
     @ski_areas = ski_areas_table.all.to_a
-    view "ski_areas"
+    view "mountains"
 end
 
 get "/ski_areas/:id" do
@@ -33,7 +33,7 @@ get "/ski_areas/:id" do
     @reviews = reviews_table.where(ski_area_id: @ski_area[:id])
     @review_count = reviews_table.where(ski_area_id: @ski_area[:id]).count
     @users_table = users_table
-    view "ski_area"
+    view "mountain"
 end
 
 get "/ski_areas/:id/reviews/new" do
