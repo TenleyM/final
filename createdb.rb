@@ -8,27 +8,43 @@ DB = Sequel.connect(connection_string)                                          
 DB.create_table! :ski_areas do
   primary_key :id
   String :ski_area_name
-  String :description, text: true
   String :location
+  String :latitude
+  String :longitude
 end
+
+DB.create_table! :users do
+  primary_key :id
+  String :name
+  String :email
+  String :password 
+end
+
 DB.create_table! :reviews do
   primary_key :id
   foreign_key :ski_area_id
-  foreign_key : user_id
-   :going
-  String :date
+  foreign_key :user_id
+  Numeric :quality_rating
+  Numeric :variety_rating
   String :comments, text: true
+  String :date
 end
 
 # Insert initial (seed) data
-events_table = DB.from(:events)
+events_table = DB.from(:ski_areas)
 
-events_table.insert(title: "Bacon Burger Taco Fest", 
-                    description: "Here we go again bacon burger taco fans, another Bacon Burger Taco Fest is here!",
-                    date: "June 21",
-                    location: "Kellogg Global Hub")
+events_table.insert(ski_area_name: "Mount Bachelor", 
+                    location: "Bend, Oregon",
+                    latitude: "43.9791812",
+                    longitude: "-121.6973873",)
 
-events_table.insert(title: "Kaleapolooza", 
-                    description: "If you're into nutrition and vitamins and stuff, this is the event for you.",
-                    date: "July 4",
-                    location: "Nowhere")
+events_table.insert(ski_area_name: "Stowe Mountain Resort", 
+                    location: "Stowe, Vermont",
+                    latitude: "44.5302928",
+                    longitude: "-72.783631",)
+
+events_table.insert(ski_area_name: "Lake Louise Ski Resort", 
+                    location: "Lake Louise, Alberta, Canada",
+                    latitude: "51.4419239",
+                    longitude: "-116.1643657",)
+
