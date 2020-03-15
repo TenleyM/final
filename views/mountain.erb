@@ -1,30 +1,30 @@
   
 <div class="row">
+<div class="col">
         <h1><%= @ski_area[:ski_area_name] %></h1>
-</div>
-<div class="row">
         <p><%= @ski_area[:location] %></p>
 </div>
-
+<div class="col">
+        <p>Total Reviews: <%= @review_count %></p>
+        <p>Average Quality Rating: <%= @averate_quality %></p>
+        <p>Average Variety Rating: <%= @average_variety %></p>
+</div>
+</div>
 <div class="row">
 <div class="col">
     <% for review in @reviews %>
     <div class="card">
     <div class="card-body">
             <div class="media-body">
+                    <p>Quality Score: <%= review[:quality_rating]%></p>
+                    <p>Variety Score: <%= reiew[:variety_rating] %></p>
                     <p><%= review[:comments] %></p>
-                    <p><%= review[:date] %></p>
                     <p><%= @users_table.where(id: review[:user_id]).to_a[0][:name] %></p>
+                    <p><%= review[:date] %></p>
             </div>
     </div>
     </div>
     <% end %>
-</div>
-<div class="col">
-
-</div>
-</div>
-
 <div>
         <p class="mt-5">
             <% if @current_user %>
@@ -33,4 +33,15 @@
                 <a href="/logins/new" class="btn btn-danger">Please sign in to leave a review.</a>
             <% end %>
         </p>
+</div>
+</div>
+
+<div class="col">
+      <iframe
+        width="600"
+        height="450"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw&q=<%= @lat_long %>&zoom=6" allowfullscreen>
+      </iframe>
+</div>
 </div>

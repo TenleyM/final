@@ -24,8 +24,8 @@ DB.create_table! :reviews do
   primary_key :id
   foreign_key :ski_area_id
   foreign_key :user_id
-  Numeric :quality_rating
-  Numeric :variety_rating
+  Fixnum :quality_rating
+  Fixnum :variety_rating
   String :comments, text: true
   String :date
 end

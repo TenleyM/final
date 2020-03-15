@@ -33,14 +33,10 @@ end
 get "/ski_areas/:id" do
     @ski_area = ski_areas_table.where(id: params[:id]).to_a[0]
     @reviews = reviews_table.where(ski_area_id: @ski_area[:id]).to_a
-    #@review_count = reviews_table.where(ski_area_id: @ski_area[:id]).count
-    #@average_quality = reviews_table.where(ski_area_id: @ski_area[:id]).count
-    #@average_variety = reviews_table.where(ski_area_id: @ski_area[:id]).count
-    #@review_date = reviews_table.where(ski_area_id: @ski_area[:id])
+    @review_count = reviews_table.where(ski_area_id: @ski_area[:id]).count
+    @average_quality = DB[:reviews].avg(:quality_rating)
+    @average_variety = DB[:reviews].avg(:variety_rating)
     @users_table = users_table
-    @lat = ski_areas_table.where(id: params[:id][:latitude])
-    @long = ski_areas_table.where(id: params[:id][:longitude])
-    @lat_long = "#{@lat}, #{@long}"
     view "mountain"
 end
 
