@@ -5,19 +5,18 @@ DB = Sequel.connect(connection_string)                                          
 #######################################################################################
 
 # Database schema - this should reflect your domain model
-DB.create_table! :events do
+DB.create_table! :ski_areas do
   primary_key :id
-  String :title
+  String :ski_area_name
   String :description, text: true
-  String :date
   String :location
 end
-DB.create_table! :rsvps do
+DB.create_table! :reviews do
   primary_key :id
-  foreign_key :event_id
-  Boolean :going
-  String :name
-  String :email
+  foreign_key :ski_area_id
+  foreign_key : user_id
+   :going
+  String :date
   String :comments, text: true
 end
 
