@@ -1,19 +1,38 @@
-<h2>
-    <i class="far fa-calendar-alt"></i>
-    <%= @event[:date] %>
-</h2>
-<h1>RSVP for <%= @event[:title] %></h1>
+<h1>Leave review for food options at <%= @ski_area[:ski_area_name] %></h1>
 
-<form action="/events/<%= @event[:id] %>/rsvps/create">
+<form action="/ski_areas/<%= @ski_area[:id] %>/reviews/create">
   <div class="form-group">
-    <label>Are you going?</label>
-    <select class="form-control" name="going">
-      <option value="1">Yes</option>
-      <option value="0">No</option>
+    <label for="exampleFormControlSelect1">Quality Rating (how good was the food you ate?)</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
+    </select>
+  </div>
+    <div class="form-group">
+    <label for="exampleFormControlSelect1">Variety Rating (was there a variety of options at the resort?)</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
     </select>
   </div>
   <div class="form-group">
-    <label>Comments</label>
+    <label>Comments (comment on quality, variety, or other things of note)</label>
     <textarea class="form-control" rows="3" name="comments"></textarea>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>

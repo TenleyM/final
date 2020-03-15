@@ -3,24 +3,13 @@
     <div class="col-sm-9">
         <h1><%= @ski_area[:ski_area_name] %></h1>
         <p><%= @ski_area[:location] %></p>
-        <% for review in @reviews %>
-                <div class="media-body">
-                    <h5 class="mt-0"><%= @users_table.where(id: review[:user_id]).to_a[0][:name] %></h5>
-                    <%= review[:comments] %>
-                </div>
-        <% end %>
+    </div>   
+       
         <p class="mt-5">
             <% if @current_user %>
-                <a href="/ski_areas/<%= @event[:id] %>/reviews/new" class="btn btn-primary">Submit a Review!</a>
+                <a href="/ski_areas/<%= @ski_area[:id] %>/reviews/new" class="btn btn-primary">Submit a Review!</a>
             <% else %>
                 <a href="/logins/new" class="btn btn-danger">Please sign in to leave a review.</a>
             <% end %>
         </p>
-    </div>
-    <div class="col-sm-3">
-        <h3>When?</h3>
-        <p><%= @review[:date] %></p>
-        <h3>How many reviews so far?</h3>
-        <p><%= @review_count %></p>
-    </div>
 </div>
