@@ -1,6 +1,7 @@
 # Set up for the application and database. DO NOT CHANGE. #############################
 require "sinatra"                                                                     #
 require "sinatra/reloader" if development?                                            #
+require "geocoder"
 require "sequel"                                                                      #
 require "logger"                                                                      #
 require "twilio-ruby"                                                                 #
@@ -17,6 +18,7 @@ after { puts; }                                                                 
 ski_areas_table = DB.from(:ski_areas)
 reviews_table = DB.from(:reviews)
 users_table = DB.from(:users)
+@gmaps_apikey = "AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw"
 
 before do
     @current_user = users_table.where(id: session["user_id"]).to_a[0]
@@ -29,9 +31,10 @@ get "/" do
 end
 
 get "/ski_areas/:id" do
-    @ski_area = events_table.where(id: params[:id]).to_a[0]
+    @ski_area = ski_areas_table.where(id: params[:id]).to_a[0]
     @reviews = reviews_table.where(ski_area_id: @ski_area[:id])
     @review_count = reviews_table.where(ski_area_id: @ski_area[:id]).count
+    @review_date = reviews_table.where(ski_area_id: @ski_area[:id])
     @users_table = users_table
     view "mountain"
 end

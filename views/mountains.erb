@@ -1,6 +1,6 @@
   
-<h1>All Events</h1>
+<h1>Ski Areas</h1>
 
-<% for event in @events %>
-    <p><a href="/events/<%= event[:id] %>"><%= event[:title] %></a></p>
+<% for mountain in @ski_areas %>
+    <p><a href="/ski_areas/<%= mountain[:id] %>"><%= mountain[:ski_area_name] %></a></p>
 <% end %>
