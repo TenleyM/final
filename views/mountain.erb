@@ -3,15 +3,26 @@
 <div class="col">
         <h1><%= @ski_area[:ski_area_name] %></h1>
         <p><%= @ski_area[:location] %></p>
+      <iframe
+        width="600"
+        height="450"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw&q=<%=@lat_long%>&zoom=6">
+      </iframe>
 </div>
 <div class="col">
         <p>Total Reviews: <%= @review_count %></p>
         <p>Average Quality Rating: <%= @average_quality %></p>
         <p>Average Variety Rating: <%= @average_variety %></p>
+<div>
+        <p class="mt-5">
+            <% if @current_user %>
+                <a href="/ski_areas/<%= @ski_area[:id] %>/reviews/new" class="btn btn-primary">Submit a Review!</a>
+            <% else %>
+                <a href="/logins/new" class="btn btn-danger">Please sign in to leave a review.</a>
+            <% end %>
+        </p>
 </div>
-</div>
-<div class="row">
-<div class="col">
     <% for review in @reviews %>
     <div class="card">
     <div class="card-body">
@@ -25,23 +36,4 @@
     </div>
     </div>
     <% end %>
-<div>
-        <p class="mt-5">
-            <% if @current_user %>
-                <a href="/ski_areas/<%= @ski_area[:id] %>/reviews/new" class="btn btn-primary">Submit a Review!</a>
-            <% else %>
-                <a href="/logins/new" class="btn btn-danger">Please sign in to leave a review.</a>
-            <% end %>
-        </p>
-</div>
-</div>
-
-<div class="col">
-      <iframe
-        width="600"
-        height="450"
-        frameborder="0" style="border:0"
-        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw&q=<%=@lat_long%>&zoom=6">
-      </iframe>
-</div>
-</div>
+    </div>
