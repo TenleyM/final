@@ -34,8 +34,8 @@ get "/ski_areas/:id" do
     @ski_area = ski_areas_table.where(id: params[:id]).to_a[0]
     @reviews = reviews_table.where(ski_area_id: @ski_area[:id]).to_a
     @review_count = reviews_table.where(ski_area_id: @ski_area[:id]).count
-    @average_quality = DB[:reviews].avg(:quality_rating)
-    @average_variety = DB[:reviews].avg(:variety_rating)
+    @average_quality = reviews_table.where(ski_area_id: @ski_area[:id]).avg(:quality_rating)
+    @average_variety = reviews_table.where(ski_area_id: @ski_area[:id]).avg(:variety_rating)
     @users_table = users_table
     view "mountain"
 end
