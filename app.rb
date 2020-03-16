@@ -38,8 +38,8 @@ get "/ski_areas/:id" do
     @average_variety = reviews_table.where(ski_area_id: @ski_area[:id]).avg(:variety_rating)
     @users_table = users_table
     @location = @ski_area[:zipcode]
-    #@geocoder_results = Geocoder.search(@location)
-    #@lat_long = @geocoder_results.first.coordinates
+    @geocoder_results = Geocoder.search(@location)
+    @lat_long = @geocoder_results.first.coordinates
     view "mountain"
 end
 
