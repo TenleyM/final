@@ -31,6 +31,7 @@ get "/" do
 end
 
 get "/ski_areas/:id" do
+    puts ski_areas_table.all
     @ski_area = ski_areas_table.where(id: params[:id]).to_a[0]
     @reviews = reviews_table.where(ski_area_id: @ski_area[:id]).to_a
     @review_count = reviews_table.where(ski_area_id: @ski_area[:id]).count
@@ -38,6 +39,7 @@ get "/ski_areas/:id" do
     @average_variety = reviews_table.where(ski_area_id: @ski_area[:id]).avg(:variety_rating)
     @users_table = users_table
     @location = @ski_area[:zipcode]
+    puts @Location
     @geocoder_results = Geocoder.search(@location)
     @lat_long = @geocoder_results.first.coordinates
     view "mountain"
