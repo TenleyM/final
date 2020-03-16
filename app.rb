@@ -42,6 +42,7 @@ get "/ski_areas/:id" do
     puts @Location
     @geocoder_results = Geocoder.search(@location)
     @lat_long = @geocoder_results.first.coordinates
+    puts @lat_long
     view "mountain"
 end
 
